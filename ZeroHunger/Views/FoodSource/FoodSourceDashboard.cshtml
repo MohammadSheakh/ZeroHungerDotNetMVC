@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "FoodSourceDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>FoodSourceDashboard</h2>
+
+@{
+    var viewData = new ViewDataDictionary();
+    viewData.Add("AllFoodItems", ViewBag.FoodItems);
+    viewData.Add("AllCollectRequstForm", ViewBag.AllCollectRequstForm);
+    //viewData.Add("Brands", ViewBag.Brands);
+    Html.RenderPartial("_CreateNewFoodItem", ViewData);
+    Html.RenderPartial("_ShowAllFoodItem", ViewData);
+
+    Html.RenderPartial("_ShowAllCollectRequstForm", ViewData);
+}

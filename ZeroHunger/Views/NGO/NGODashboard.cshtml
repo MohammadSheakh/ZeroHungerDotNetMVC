@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "NGODashboard";
+}
+
+<h2>NGODashboard</h2>
+
+<a href="/NGO/CreateNewEmployeeAccount">Create New Employee</a>
+
+
+
+@*// ekhane shob COllectRequstForm show korbo*@
+
+@{
+    var viewData = new ViewDataDictionary();
+    viewData.Add("AllCollectRequstForm", ViewBag.AllCollectRequstForm);
+
+    
+    Html.RenderPartial("_ShowAllCollectRequstForm", viewData);
+}

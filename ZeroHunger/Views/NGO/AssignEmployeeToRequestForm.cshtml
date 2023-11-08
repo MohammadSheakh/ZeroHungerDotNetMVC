@@ -1,0 +1,119 @@
+﻿@model ZeroHunger.DTOs.CollectRequstForm.CollectRequstFormDTO
+
+@{
+    ViewBag.Title = "AssignEmployeeToRequestForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AssignEmployeeToRequestForm</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal d-flex flex-column justify-content-center align-items-center">
+        <h4>CollectRequstFormDTO</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.reqFormId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.reqFormId, new { htmlAttributes = new { @class = "form-control" } })*@
+                
+                <input type="text" hidden name="reqFormId" value="@Model.reqFormId" />
+
+                @Html.ValidationMessageFor(model => model.reqFormId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.requestStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.requestStatus, new { htmlAttributes = new { @class = "form-control" } })*@
+
+
+                <div class="form-group">
+                    <span class="control-label col-md-2">Request Status</span>
+                    <div class="col-md-10">
+                        <select class="form-control" name="requestStatus">
+                            <option disabled>@Model.requestStatus</option>
+                            @*@foreach (var status in ViewBag.Status)
+                    {
+                        <option value="@status.id">@status.name</option>
+                    }*@
+                            <option>Request Pending</option>
+                            <option></option>
+                            <option value="Request Accepted" >Request Accepted</option>
+                            <option>Employee Assigned</option>
+                            <option >Food Collected</option>
+                            <option disabled>-------------</option>
+                            
+                        </select>
+                    </div>
+                </div>
+
+
+
+                @Html.ValidationMessageFor(model => model.requestStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.createdAt, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @* @Html.EditorFor(model => model.createdAt, new { htmlAttributes = new { @class = "form-control" } })*@
+                
+                @*<input type="datetime" disabled name="createdAt" value="@Model.createdAt" />*@
+                
+                @Html.ValidationMessageFor(model => model.createdAt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.employeeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @* @Html.EditorFor(model => model.employeeId, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                @*employeeId:*@
+                <select name="employeeId">
+                    <option selected disabled>---Select---</option>
+                    @foreach (var item in ViewBag.employees)
+                    {
+                        <option value="@item.empId">@item.name</option>
+                    }
+                    @*<option value="1">emp1</option>
+                    <option value="2">Student</option>
+                    <option value="3">Business</option>*@
+                </select>
+
+                @Html.ValidationMessageFor(model => model.employeeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ngoId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ngoId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ngoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.foodSourceId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.foodSourceId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.foodSourceId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

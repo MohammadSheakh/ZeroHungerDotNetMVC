@@ -1,0 +1,98 @@
+﻿@*//@model ZeroHunger.DTOs.FoodItem.FoodItemDTO*@
+
+@{
+    var model = ViewData["AllFoodItems"] as ZeroHunger.DTOs.FoodItem.FoodItemDTO;
+
+}
+    @*, new { enctype = "multipart/form-data" }*@
+
+@using (Html.BeginForm("CreateNewFoodItem", "FoodSource", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    ////////////////////////////// Food Item er o image upload korar bebostha thakte hobe
+
+    <div class="form-horizontal d-flex flex-row ">
+        <h4>FoodItemDTO</h4>
+        <hr />
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.foodItemId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.foodItemId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.foodItemId, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            Name
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="text" name="name" value="" />
+                @*@Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            Quantity
+            @*@Html.LabelFor(model => model.quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                     <input type="text" name="name" value="" />
+                    @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
+                </div>*@
+            <div>
+                <input type="text" name="quantity" value="" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            Quantity Unit
+            @*@Html.LabelFor(model => model.quantityUnit, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.quantityUnit, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.quantityUnit, "", new { @class = "text-danger" })
+                </div>*@
+            <div>
+                <input type="text" name="quantityUnit" value="" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            Max Preservation TIme
+            @*@Html.LabelFor(model => model.maxPreservationTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.maxPreservationTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.maxPreservationTime, "", new { @class = "text-danger" })
+                </div>*@
+            <div>
+                <input type="datetime" name="maxPreservationTime" value="" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.sourceId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            Source Id
+            <div class="col-md-10">
+
+                @*<input type="text" disabled name="sourceId" value="@Session["userId"]" />*@
+
+                <input type="text" disabled name="sourceId" value="@Convert.ToInt32(Session["userId"])" />
+
+
+                @*@Html.ValidationMessageFor(model => model.sourceId, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-outline-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ZeroHunger.EF.FoodItem>
+
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                foodItemId
+            </th>
+            <th>
+                name
+            </th>
+            <th>
+                quantity
+            </th>
+            <th>
+                quantityUnit
+            </th>
+            <th>
+                maxPreservationTime
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.foodSourceId)*@
+                sourceId
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in ViewBag.foodItems)
+        {
+            <tr>
+                <td>
+
+                    @item.foodItemId
+
+                </td>
+                <td>
+                    @item.name
+                </td>
+                <td>
+                    @item.quantity
+                </td>
+                <td>
+                    @item.quantityUnit
+                </td>
+                <td>
+                    @item.maxPreservationTime
+                </td>
+                <td>
+                    @item.sourceId
+                </td>
+                <td>
+                    <a href="/FoodSource/addToCart/@item.foodItemId">Add to Request Form</a>
+                    @*@Html.ActionLink("Add to Request Form", "addToCart", "FoodSource", new { id = item.foodItemId }) |*@
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+
+                    <a class=" btn btn-outline-primary" href="/FoodSource/RemoveSourceIdFromSingleFoodItems/@item.foodItemId">
+
+                        Delete
+
+                    </a>
+
+
+
+
+                    @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+    @{
+        if (Convert.ToInt32(Session["cartCount"]) > 0)
+        {
+        <div class="d-flex justify-content-center align-content-center gap-2" >
+            <a class=" btn btn-outline-danger " href="/FoodSource/RemoveSourceIdFromSourcesFoodItems">Delete All Food Item </a> <br />
+            <a class=" btn btn-outline-primary" href="/FoodSource/SubmitCollectRequestForm">Submit Collect Request Form </a>
+
+        </div>
+             }
+    }
+
+</div>
+
+
+
+@*// Already Submitted Form er Ki Obostha shegula o dekhte parbe
+// Ei source Id already jegula submit korse .. shegular obostha dekhte parbe*@
+

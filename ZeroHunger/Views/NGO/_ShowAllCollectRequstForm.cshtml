@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ZeroHunger.EF.CollectRequstForm>
+
+<table class="table">
+    <tr>
+        <th>
+            reqFormId
+        </th>
+        <th>
+            requestStatus
+        </th>
+        <th>
+            createdAt   
+        </th>
+        <th>
+            employeeId
+        </th>
+        <th>
+            ngoId
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.foodSourceId)*@
+            foodSourceId
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in ViewBag.AllCollectRequstForm) {
+    <tr>
+        <td>
+            
+            @item.reqFormId
+            
+        </td>
+        <td>
+            @item.requestStatus
+        </td>
+        <td>
+            @item.createdAt
+        </td>
+        <td>
+            @item.employeeId
+        </td>
+        <td>
+            @item.ngoId
+        </td>
+        <td>
+            @item.foodSourceId
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "AssignEmployeeToRequestForm", new {  id=item.reqFormId }) |
+            
+            @*@Html.ActionLink("Details", "Details", new {  id=item.reqFormId })*@
+            @Html.ActionLink("Delete", "Delete", new {  id=item.reqFormId })
+        </td>
+    </tr>
+}
+
+</table>

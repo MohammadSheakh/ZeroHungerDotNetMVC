@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5715dd2b249247908e6fb3fe2e874bd6" Name="Diagram1" ZoomLevel="89">
+        <EntityTypeShape EntityType="Model.CollectRequstForm" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Employee" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FoodItem" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FoodSource" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.NGO" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RequestItem" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagram" Width="1.5" PointX="5.75" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_CollectRequstForm_FoodSources" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CollectRequstForm_NGO" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_RequestItem_CollectRequstForm" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Employees_NGO" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_FoodItems_FoodSources" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_RequestItem_FoodItems" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
