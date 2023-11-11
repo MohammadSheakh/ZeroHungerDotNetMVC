@@ -32,9 +32,9 @@
             @*@Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })*@
             Name
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })*@
-                <input type="text" name="name" value="" />
-                @*@Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })*@
+                @*<input type="text" name="name" value="" />*@
+                <input type="text" name="name" value="@TempData["nameForCreateFoodItem"]" />
+                @TempData["nameValidationForCreateFoodItem"]
             </div>
         </div>
 
@@ -47,7 +47,9 @@
                     @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
                 </div>*@
             <div>
-                <input type="text" name="quantity" value="" />
+                @*<input type="text" name="quantity" value="" />*@
+                <input type="text" name="quantity" value="@TempData["quantityForCreateFoodItem"]" />
+                @TempData["quantityValidationForCreateFoodItem"]
             </div>
         </div>
 
@@ -59,7 +61,11 @@
                     @Html.ValidationMessageFor(model => model.quantityUnit, "", new { @class = "text-danger" })
                 </div>*@
             <div>
-                <input type="text" name="quantityUnit" value="" />
+                @*<input type="text" name="quantityUnit" value="" />*@
+                <input type="text" name="quantityUnit" value="@TempData["quantityUnitForCreateFoodItem"]" />
+
+                @TempData["quantityUnitValidationForCreateFoodItem"]
+
             </div>
         </div>
 
@@ -72,6 +78,8 @@
                 </div>*@
             <div>
                 <input type="datetime-local" name="maxPreservationTime" value="" />
+                @*<input type="datetime-local" name="maxPreservationTime" value="@((DateTime)TempData["maxPreservationTimeForCreateFoodItem"]).ToString(" yyyy-MM-ddTHH:mm")" />*@
+                @*@TempData["maxPreservationTimeValidationForCreateFoodItem"]*@
             </div>
         </div>
 
@@ -87,7 +95,7 @@
 
                 @*@Html.ValidationMessageFor(model => model.sourceId, "", new { @class = "text-danger" })*@
             </div>
-        </div>
+            </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
