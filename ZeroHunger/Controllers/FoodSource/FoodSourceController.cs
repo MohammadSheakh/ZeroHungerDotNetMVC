@@ -48,6 +48,10 @@ namespace ZeroHunger.Controllers.FoodSource
 
             ViewBag.AllCollectRequstForm = dataFromDB2.ToList();
 
+            //TempData["nameValidationForCreateFoodItem"] = "";
+            //TempData["quantityValidationForCreateFoodItem"] = "";
+            //TempData["quantityUnitValidationForCreateFoodItem"] = "";
+            //TempData["maxPreservationTimeValidationForCreateFoodItem"] = "";
 
             return View();
         }
@@ -220,6 +224,47 @@ namespace ZeroHunger.Controllers.FoodSource
             if (Session["userId"] != null)
             {
                 // after save those fields
+
+
+                //////////////////////////////////// First Check For ERROR 
+
+                // Perform custom validation
+                if (string.IsNullOrEmpty(foodItemDto.name) || foodItemDto.name.Length < 3)
+                {
+                    //ModelState.AddModelError("name", "Name must be at least 3 characters long.");
+                    TempData["nameValidationForCreateFoodItem"] = "Name must be at least 3 characters long.";
+                }
+                else
+                {
+                    TempData["nameForCreateFoodItem"] = foodItemDto.name;
+                }
+
+                //if (string.IsNullOrEmpty(Convert.ToString(foodItemDto.quantity))) 
+                //{
+                //    TempData["quantityValidationForCreateFoodItem"] = "Quantity Can not be empty.";
+                //}
+                //else
+                //{
+                //    TempData["quantityForCreateFoodItem"] = foodItemDto.quantity;
+                //}
+
+                //if (string.IsNullOrEmpty(foodItemDto.quantityUnit))
+                //{
+                //    TempData["quantityUnitValidationForCreateFoodItem"] = "Quantity Unit Can not be empty..";
+                //}
+                //else
+                //{
+                //    TempData["quantityUnitForCreateFoodItem"] = foodItemDto.quantityUnit;
+                //}
+
+                //if (!foodItemDto.maxPreservationTime.HasValue)
+                //{
+                //    TempData["maxPreservationTimeValidationForCreateFoodItem"] = "maxPreservationTime Can not be empty..";
+                //}
+                //else
+                //{
+                //    TempData["maxPreservationTimeForCreateFoodItem"] = Convert.ToDateTime(foodItemDto.maxPreservationTime).ToLocalTime();
+                //}
                 var db = new EF.Entities();
                 if (ModelState.IsValid)
                 {
@@ -232,6 +277,10 @@ namespace ZeroHunger.Controllers.FoodSource
 
 
                     db.SaveChanges();
+                    return RedirectToAction("FoodSourceDashboard");
+                }
+                else
+                {
                     return RedirectToAction("FoodSourceDashboard");
                 }
             }

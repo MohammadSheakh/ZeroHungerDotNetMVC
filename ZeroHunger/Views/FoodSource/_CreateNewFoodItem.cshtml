@@ -1,4 +1,4 @@
-﻿@*//@model ZeroHunger.DTOs.FoodItem.FoodItemDTO*@
+﻿@model ZeroHunger.DTOs.FoodItem.FoodItemDTO
 
 @{
     var model = ViewData["AllFoodItems"] as ZeroHunger.DTOs.FoodItem.FoodItemDTO;
@@ -8,7 +8,7 @@
 
 @using (Html.BeginForm("CreateNewFoodItem", "FoodSource", FormMethod.Post))
 {
-    @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken() <!--//////////////////////////////////////// Bujhi nai 🟢🔰🔴🔗-->
 
     ////////////////////////////// Food Item er o image upload korar bebostha thakte hobe
     <div style="position:relative; left:250px;" class=" d-flex flex-row justify-content-start align-items-center">
@@ -19,59 +19,54 @@
     <div class="form-horizontal d-flex flex-row justify-content-center align-items-center">
 
         <hr />
-        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.foodItemId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.foodItemId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.foodItemId, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
+        
 
         <div class="form-group">
             @*@Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })*@
             Name
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })*@
-                <input type="text" name="name" value="" />
-                @*@Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })*@
+                @*<input type="text" name="name" value="@TempData["nameForCreateFoodItem"] == null ? " " : @TempData["nameForCreateFoodItem"].ToString() )" />*@
+                <input type="text" name="name" value="@TempData["nameForCreateFoodItem"]" />
+
+
+                @*@TempData["nameValidationForCreateFoodItem"]*@
+                
             </div>
         </div>
 
         <div class="form-group">
             Quantity
-            @*@Html.LabelFor(model => model.quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                     <input type="text" name="name" value="" />
-                    @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
-                </div>*@
+            
             <div>
-                <input type="text" name="quantity" value="" />
+                <input type="text" name="quantity" value="@TempData["quantityForCreateFoodItem"]" />
+                @*=================@TempData["quantityValidationForCreateFoodItem"]*@
             </div>
         </div>
 
         <div class="form-group">
             Quantity Unit
-            @*@Html.LabelFor(model => model.quantityUnit, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.quantityUnit, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.quantityUnit, "", new { @class = "text-danger" })
-                </div>*@
+            
             <div>
-                <input type="text" name="quantityUnit" value="" />
+                <input type="text" name="quantityUnit" value="@TempData["quantityUnitForCreateFoodItem"]" />
+                
+                @*=========================================================@TempData["quantityUnitValidationForCreateFoodItem"]*@
+            
+        
+
             </div>
         </div>
 
         <div class="form-group">
             Max Preservation TIme
-            @*@Html.LabelFor(model => model.maxPreservationTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.maxPreservationTime, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.maxPreservationTime, "", new { @class = "text-danger" })
-                </div>*@
+            
             <div>
-                <input type="datetime-local" name="maxPreservationTime" value="" />
+                @*<input type="datetime-local" name="maxPreservationTime" value="@TempData["maxPreservationTimeForCreateFoodItem"]" />*@
+                <input type="datetime-local" name="maxPreservationTime" value="@((DateTime)TempData["maxPreservationTimeForCreateFoodItem"]).ToString("yyyy-MM-ddTHH:mm")"  />
+                @*value="@((DateTime)TempData["maxPreservationTimeForCreateFoodItem"]).ToString("yyyy-MM-ddTHH:mm")"*@
+                
+    
+    @*==========================@TempData["maxPreservationTimeValidationForCreateFoodItem"]*@
             </div>
         </div>
 
