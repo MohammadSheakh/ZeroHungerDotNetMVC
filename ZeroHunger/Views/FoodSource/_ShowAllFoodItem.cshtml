@@ -1,5 +1,10 @@
 ﻿@model IEnumerable<ZeroHunger.EF.FoodItem>
 
+<div style="position:relative; left:250px;" class=" d-flex flex-row justify-content-start align-items-center">
+
+    <h4>Show All Food Item</h4>
+</div>
+
 <div>
     <table class="table">
         <tr>
@@ -20,7 +25,8 @@
             </th>
             <th>
                 @*@Html.DisplayNameFor(model => model.foodSourceId)*@
-                sourceId
+                @*sourceId*@
+                sourceName
             </th>
             <th></th>
         </tr>
@@ -41,12 +47,14 @@
                 </td>
                 <td>
                     @item.quantityUnit
+                    
                 </td>
                 <td>
                     @item.maxPreservationTime
                 </td>
                 <td>
-                    @item.sourceId
+                    @*@item.sourceId*@
+                   @item.FoodSource.name
                 </td>
                 <td>
                     <a href="/FoodSource/addToCart/@item.foodItemId">Add to Request Form</a>
@@ -72,18 +80,20 @@
     @{
         if (Convert.ToInt32(Session["cartCount"]) > 0)
         {
-        <div class="d-flex justify-content-center align-content-center gap-2" >
-            <a class=" btn btn-outline-danger " href="/FoodSource/RemoveSourceIdFromSourcesFoodItems">Delete All Food Item </a> <br />
-            <a class=" btn btn-outline-primary" href="/FoodSource/SubmitCollectRequestForm">Submit Collect Request Form </a>
+            <div class="d-flex justify-content-center align-content-center gap-2">
+                <a class=" btn btn-outline-danger " href="/FoodSource/RemoveSourceIdFromSourcesFoodItems">Delete All Food Item </a> <br />
+                <a class=" btn btn-outline-primary" href="/FoodSource/SubmitCollectRequestForm">Submit Collect Request Form </a>
 
-        </div>
-             }
+            </div>
+        }
     }
 
 </div>
+<br />
+<br />
 
 
 
 @*// Already Submitted Form er Ki Obostha shegula o dekhte parbe
-// Ei source Id already jegula submit korse .. shegular obostha dekhte parbe*@
+    // Ei source Id already jegula submit korse .. shegular obostha dekhte parbe*@
 

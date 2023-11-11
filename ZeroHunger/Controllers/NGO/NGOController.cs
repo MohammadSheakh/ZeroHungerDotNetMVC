@@ -347,7 +347,9 @@ namespace ZeroHunger.Controllers.NGO
         [HttpGet]
         public ActionResult AssignEmployeeToRequestForm(int? id)
         {
+            // Front End e NGO and Food Source er Name show korte hobe .. 
 
+            // Back End e id pass hobe .. 
             var db = new Entities();
             //int ngoId = Convert.ToInt32(Session["ngoId"]);
             var dataFromDB = (from collectRequestForm in db.CollectRequstForms
@@ -355,7 +357,10 @@ namespace ZeroHunger.Controllers.NGO
                               select collectRequestForm).FirstOrDefault();
 
             var autoMapper = new AutoMapperConverter();
-            var convertedSeller = autoMapper.ConvertForSingleInstance<EF.CollectRequstForm, CollectRequstFormDTO >(dataFromDB);
+            var convertedSeller = autoMapper.ConvertForSingleInstance<EF.CollectRequstForm, CollectRequstFormDTO>(dataFromDB);
+
+            //var manualConverter = new ManualConverter();
+            //var convertedSeller = manualConverter.SingleManualConvertForCollectRequestForm(EF.CollectRequstForm);
 
             var dataFromEmployeeTable = (from emp in db.Employees
                                          select emp).ToList();
@@ -375,6 +380,9 @@ namespace ZeroHunger.Controllers.NGO
 
             var extractSeller = db.CollectRequstForms.Find(collectRequestFormDTO.reqFormId);
             extractSeller.employeeId = Convert.ToInt32(collectRequestFormDTO.employeeId);
+            extractSeller.ngoId = Convert.ToInt32(collectRequestFormDTO.ngoId);
+            extractSeller.foodSourceId = Convert.ToInt32(collectRequestFormDTO.foodSourceId);
+            //extractSeller.createdAt = collectRequestFormDTO.createdAt;
             var autoMapper = new AutoMapperConverter();
             db.Entry(extractSeller).CurrentValues.SetValues(autoMapper.ConvertForSingleInstance<CollectRequstFormDTO, EF.CollectRequstForm>(collectRequestFormDTO));
             db.SaveChanges();
@@ -384,6 +392,49 @@ namespace ZeroHunger.Controllers.NGO
 
         // 6. status update korte parbe .. 
 
+        // Delete CollectRequestForm 
+        [HttpGet]
+
+        public ActionResult DeleteCollectRequestForm(int id)
+        {
+            var db = new Entities();
+            /**
+             * 
+             The DELETE statement conflicted with the REFERENCE constraint 
+            "FK_RequestItem_CollectRequstForm". The conflict occurred in database 
+            "Zero-Hunger", table "dbo.RequestItem", column 'collectRequestFormId'.
+             The statement has been terminated. 
+             * 
+             */
+            // So, CollectRequestForm er reqFormId niye .. 
+            // RequestItem er moddhe collectRequestFormId er shathe match kore 
+
+            var requestFormFoundFromRequestItem = (from seller in db.RequestItems
+                                    where seller.collectRequestFormId == id
+                                    select seller).ToList();
+
+            db.RequestItems.RemoveRange(requestFormFoundFromRequestItem);
+            db.SaveChanges();
+
+
+            //First LINQ ..
+            var requestFormFound = (from seller in db.CollectRequstForms
+                               where seller.reqFormId == id
+                               select seller).SingleOrDefault();
+
+            //var extractProduct = db.Products.Find(productFound.id);
+
+            if (requestFormFound == null)
+            {
+                return RedirectToAction("NGODashboard");
+            }
+            //return RedirectToAction("SellerNotFound");
+
+            db.CollectRequstForms.Remove(requestFormFound);
+            db.SaveChanges();
+
+            return RedirectToAction("NGODashboard");
+        }
 
     }
 }

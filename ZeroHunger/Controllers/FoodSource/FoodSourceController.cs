@@ -38,6 +38,7 @@ namespace ZeroHunger.Controllers.FoodSource
 
             // This is for Create New FoodItem 
             ViewBag.FoodItems = convertedSeller;
+            
 
             // We need something that show all CollectRequestForm
 
@@ -216,21 +217,25 @@ namespace ZeroHunger.Controllers.FoodSource
         [HttpPost]
         public ActionResult CreateNewFoodItem(FoodItemDTO foodItemDto)
         {
-            // after save those fields
-            var db = new EF.Entities();
-            if (ModelState.IsValid)
+            if (Session["userId"] != null)
             {
-                foodItemDto.sourceId = Convert.ToInt32(Session["userId"]);
-                var autoMapper = new AutoMapperConverter();
-                // autoMapper.ConvertForSingleInstance<SellerDTO, Seller>(sellerDto);
+                // after save those fields
+                var db = new EF.Entities();
+                if (ModelState.IsValid)
+                {
+                    foodItemDto.sourceId = Convert.ToInt32(Session["userId"]);
+                    var autoMapper = new AutoMapperConverter();
+                    // autoMapper.ConvertForSingleInstance<SellerDTO, Seller>(sellerDto);
 
-                db.FoodItems.Add(autoMapper.ConvertForSingleInstance<FoodItemDTO, EF.FoodItem>(foodItemDto));
-                // as controller name and model name is similler we have to specify the namespace .. 
+                    db.FoodItems.Add(autoMapper.ConvertForSingleInstance<FoodItemDTO, EF.FoodItem>(foodItemDto));
+                    // as controller name and model name is similler we have to specify the namespace .. 
 
 
-                db.SaveChanges();
-                return RedirectToAction("FoodSourceDashboard");
+                    db.SaveChanges();
+                    return RedirectToAction("FoodSourceDashboard");
+                }
             }
+            
             //return View();
             return RedirectToAction("FoodSourceDashboard");
         }

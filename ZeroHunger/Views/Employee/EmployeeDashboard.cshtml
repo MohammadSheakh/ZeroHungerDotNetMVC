@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "EmployeeDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EmployeeDashboard</h2>
+
+@*// ekhane shob COllectRequstForm show korbo*@
+
+@{
+    var viewData = new ViewDataDictionary();
+    viewData.Add("AllCollectRequstForm", ViewBag.AllCollectRequstForm);
+
+
+    Html.RenderPartial("_ShowAllCollectRequstFormForEmployee", viewData);
+}

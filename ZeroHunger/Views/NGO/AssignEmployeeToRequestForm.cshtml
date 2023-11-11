@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal d-flex flex-column justify-content-center align-items-center">
         <h4>CollectRequstFormDTO</h4>
         <hr />
@@ -36,7 +36,7 @@
                     <span class="control-label col-md-2">Request Status</span>
                     <div class="col-md-10">
                         <select class="form-control" name="requestStatus">
-                            <option disabled>@Model.requestStatus</option>
+                            <option>@Model.requestStatus</option>
                             @*@foreach (var status in ViewBag.Status)
                     {
                         <option value="@status.id">@status.name</option>
@@ -63,7 +63,7 @@
             <div class="col-md-10">
                @* @Html.EditorFor(model => model.createdAt, new { htmlAttributes = new { @class = "form-control" } })*@
                 
-                @*<input type="datetime" disabled name="createdAt" value="@Model.createdAt" />*@
+                <input type="datetime" disabled name="createdAt" value="@Model.createdAt" />
                 
                 @Html.ValidationMessageFor(model => model.createdAt, "", new { @class = "text-danger" })
             </div>
@@ -93,7 +93,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ngoId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ngoId, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.ngoId, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                @*@Html.EditorFor(model => model.NGO.name, new { htmlAttributes = new { @class = "form-control" } })*@
+
+
+                <select name="ngoId">
+                    @*// disabled*@
+                    <option selected  value="@Model.ngoId ">@Model.NGO.name</option>
+                </select>
+
+
                 @Html.ValidationMessageFor(model => model.ngoId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -101,7 +111,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.foodSourceId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.foodSourceId, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.foodSourceId, new { htmlAttributes = new { @class = "form-control" } })*@
+                
+                <select name="foodSourceId">
+                    @*disabled*@
+                    <option selected value="@Model.foodSourceId ">@Model.FoodSource.name</option>
+                </select>
+
+
                 @Html.ValidationMessageFor(model => model.foodSourceId, "", new { @class = "text-danger" })
             </div>
         </div>

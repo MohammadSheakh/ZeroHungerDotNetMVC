@@ -1,0 +1,76 @@
+﻿@*@model ZeroHunger.DTOs.FoodItem.FoodItemDTO*@
+
+@{
+    ViewBag.Title = "ShowFoodItemDetailsForACollectRequestForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h2>ShowFoodItemDetailsForACollectRequestForm</h2>
+
+    
+
+    <table class="table">
+        <tr>
+            <th>
+                foodItemId
+            </th>
+            <th>
+                name
+            </th>
+            <th>
+                quantity
+            </th>
+            <th>
+                quantityUnit
+            </th>
+            <th>
+                maxPreservationTime
+            </th>
+            <th>
+                
+                @*sourceId*@
+                sourceName
+            </th>
+            
+        </tr>
+
+        @foreach (var item in ViewBag.foodItems)
+        {
+            <tr>
+                <td>
+                    @*foodItemId  name    quantity   quantityUnit     maxPreservationTime    sourceId*@
+
+                    @item.foodItemId
+
+                </td>
+                <td>
+                    @item.name
+                </td>
+                <td>
+                    @item.quantity
+                </td>
+                <td>
+                    @item.quantityUnit
+                </td>
+                <td>
+                    @item.maxPreservationTime
+                </td>
+                <td>
+                    @*@item.sourceId*@
+                    @item.FoodSource.name
+                </td>
+                
+            </tr>
+        }
+
+    </table>
+
+
+
+    <p class="dl-horizontal d-flex flex-column justify-content-center align-items-center">
+        <a href="/Employee/EmployeeDashboard">Back To Dashboard</a>
+
+    </p>
+</div>
+
+

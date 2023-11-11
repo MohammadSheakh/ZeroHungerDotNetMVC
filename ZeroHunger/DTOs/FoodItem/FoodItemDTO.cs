@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ZeroHunger.EF;
 
 namespace ZeroHunger.DTOs.FoodItem
 {
@@ -13,6 +14,6 @@ namespace ZeroHunger.DTOs.FoodItem
         public string quantityUnit { get; set; }
         public Nullable<System.DateTime> maxPreservationTime { get; set; }
         public Nullable<int> sourceId { get; set; }
-
+        public virtual EF.FoodSource FoodSource { get; set; }
     }
 }

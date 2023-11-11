@@ -4,16 +4,20 @@
     var model = ViewData["AllFoodItems"] as ZeroHunger.DTOs.FoodItem.FoodItemDTO;
 
 }
-    @*, new { enctype = "multipart/form-data" }*@
+@*, new { enctype = "multipart/form-data" }*@
 
 @using (Html.BeginForm("CreateNewFoodItem", "FoodSource", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     ////////////////////////////// Food Item er o image upload korar bebostha thakte hobe
+    <div style="position:relative; left:250px;" class=" d-flex flex-row justify-content-start align-items-center">
 
-    <div class="form-horizontal d-flex flex-row ">
-        <h4>FoodItemDTO</h4>
+        <h4>Add New Food Item</h4>
+    </div>
+
+    <div class="form-horizontal d-flex flex-row justify-content-center align-items-center">
+
         <hr />
         @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -67,7 +71,7 @@
                     @Html.ValidationMessageFor(model => model.maxPreservationTime, "", new { @class = "text-danger" })
                 </div>*@
             <div>
-                <input type="datetime" name="maxPreservationTime" value="" />
+                <input type="datetime-local" name="maxPreservationTime" value="" />
             </div>
         </div>
 
@@ -91,8 +95,7 @@
             </div>
         </div>
     </div>
+    <br />
+    
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

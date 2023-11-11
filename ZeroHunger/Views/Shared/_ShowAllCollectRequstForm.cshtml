@@ -1,5 +1,12 @@
-﻿@*// This is for FoodSource*@ 
+﻿@*// This is for FoodSource*@
 @model IEnumerable<ZeroHunger.EF.CollectRequstForm>
+
+<div style="position:relative; left:250px;" class=" d-flex flex-row justify-content-start align-items-center">
+
+    <h4>Show All Submitted Request Form</h4>
+</div>
+<br />
+<br />
 
 <table class="table">
     <tr>
@@ -10,49 +17,54 @@
             requestStatus
         </th>
         <th>
-            createdAt   
+            createdAt
         </th>
         <th>
             employeeId
         </th>
         <th>
-            ngoId
+            @*ngoId*@
+            ngoName
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.foodSourceId)*@
-            foodSourceId
+            @*foodSourceId*@
+            foodSourceName
         </th>
-        <th></th>
+        @*<th></th>*@
     </tr>
 
-@foreach (var item in ViewBag.AllCollectRequstForm) {
-    <tr>
-        <td>
-            
-            @item.reqFormId
-            
-        </td>
-        <td>
-            @item.requestStatus
-        </td>
-        <td>
-            @item.createdAt
-        </td>
-        <td>
-            @item.employeeId
-        </td>
-        <td>
-            @item.ngoId
-        </td>
-        <td>
-            @item.foodSourceId
-        </td>
-        <td>
-            
-            @Html.ActionLink("Details", "Details", new {  id=item.reqFormId })
-            @Html.ActionLink("Delete", "Delete", new {  id=item.reqFormId })
-        </td>
-    </tr>
-}
+    @foreach (var item in ViewBag.AllCollectRequstForm)
+    {
+        <tr>
+            <td>
+
+                @item.reqFormId
+
+            </td>
+            <td>
+                @item.requestStatus
+            </td>
+            <td>
+                @item.createdAt
+            </td>
+            <td>
+                @item.employeeId
+            </td>
+            <td>
+                @*@item.ngoId*@
+                @item.NGO.name
+            </td>
+            <td>
+                @*@item.foodSourceId*@
+                @item.FoodSource.name
+            </td>
+            <td>
+
+                @*@Html.ActionLink("Details", "Details", new { id = item.reqFormId })*@
+                @*@Html.ActionLink("Delete", "Delete", new {  id=item.reqFormId })*@
+            </td>
+        </tr>
+    }
 
 </table>

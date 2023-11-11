@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ZeroHunger.EF.CollectRequstForm>
+﻿@*// This is for FoodSource*@ 
+@model IEnumerable<ZeroHunger.EF.CollectRequstForm>
 
 <table class="table">
     <tr>
@@ -12,12 +13,14 @@
             createdAt   
         </th>
         <th>
+            @*employeeId*@
             employeeId
         </th>
         <th>
             @*ngoId*@
             ngoName
-        </th>
+
+        </th> 
         <th>
             @*@Html.DisplayNameFor(model => model.foodSourceId)*@
             @*foodSourceId*@
@@ -51,12 +54,13 @@
             @item.FoodSource.name
         </td>
         <td>
-            @Html.ActionLink("Edit", "AssignEmployeeToRequestForm", new {  id=item.reqFormId }) |
             
-            @*@Html.ActionLink("Details", "Details", new {  id=item.reqFormId })*@
-            @Html.ActionLink("Delete", "DeleteCollectRequestForm", new {  id=item.reqFormId })
+            @Html.ActionLink("Details", "ShowFoodItemDetailsForACollectRequestForm", new {  id=item.reqFormId })
+            @*@Html.ActionLink("Delete", "Delete", new {  id=item.reqFormId })*@
         </td>
     </tr>
 }
 
 </table>
+
+

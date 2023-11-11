@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ZeroHunger.DTOs.CollectRequstForm;
 using ZeroHunger.EF;
 
 namespace E_Commerce_Web_Application.Helper.Converter
@@ -34,6 +35,25 @@ namespace E_Commerce_Web_Application.Helper.Converter
                 
             };
         }
+
+        //public NGODTO SingleManualConvertForCollectRequestForm(CollectRequstForm crf)
+        //{
+        //    // Product type er data pathacchi .. 
+        //    // ProductDTO er intance er moddhe 
+        //    // shob value copy kore .. DTO format e  return kortese 
+        //    return new CollectRequstFormDTO()
+        //    {
+        //        reqFormId = crf.reqFormId,
+        //        requestStatus = crf.requestStatus,
+        //        createdAt = crf.createdAt,
+        //        employeeId = crf.employeeId,
+        //        ngoId = crf.ngoId,
+        //        foodSourceId = crf.foodSourceId,
+        //        FoodSource = crf.FoodSource,
+        //        NGO = crf.NGO,
+
+        //    };
+        //}
 
 
         // method er nam same 
